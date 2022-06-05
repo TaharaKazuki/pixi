@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js'
 import { Globals } from './Global'
 import { sound } from '@pixi/sound'
+import TWEEN from '@tweenjs/tween.js'
 
 export class PuzzlePice extends PIXI.utils.EventEmitter {
   sprite!: PIXI.Sprite
@@ -81,6 +82,16 @@ export class PuzzlePice extends PIXI.utils.EventEmitter {
   }
 
   reset() {
+    const tween = new TWEEN.Tween(this.sprite)
+    tween.to(
+      {
+        x: this.field.x,
+        y: this.field.y,
+      },
+      300
+    )
+    tween.easing(TWEEN.Easing.Back.Out)
+    tween.start()
     this.sprite.x = this.field.x
     this.sprite.y = this.field.y
   }
