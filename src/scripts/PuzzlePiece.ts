@@ -9,12 +9,13 @@ export class PuzzlePice {
 
   constructor(id: number, field: { x: number; y: number }) {
     this.sprite = new PIXI.Sprite(Globals.resources[`puzzle${id}`].texture)
+    this.field = field
+    this.reset()
+
     this.sprite.x = field.x
     this.sprite.y = field.y
     this.sprite.anchor.set(0.5)
     this.sprite.scale.set(0.5)
-
-    this.field = field
 
     this.setInteractive()
   }
@@ -48,5 +49,11 @@ export class PuzzlePice {
 
   onTouchEnd() {
     this.dragging = false
+    this.reset()
+  }
+
+  reset() {
+    this.sprite.x = this.field.x
+    this.sprite.y = this.field.y
   }
 }
