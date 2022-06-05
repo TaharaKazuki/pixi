@@ -29,6 +29,21 @@ export class PuzzleGrid {
   }
 
   onPieceDragEnd(piece: PuzzlePice) {
-    piece.reset()
+    const pieceToReplace = this.pieces.find(
+      (item) =>
+        item !== piece &&
+        piece.sprite.x >= item.left &&
+        piece.sprite.x <= item.right &&
+        piece.sprite.y <= item.bottom &&
+        piece.sprite.y >= item.top
+    )
+
+    if (pieceToReplace) {
+      const replaceField = pieceToReplace.field
+      pieceToReplace.setField(piece.field)
+      piece.setField(replaceField)
+    } else {
+      piece.reset()
+    }
   }
 }

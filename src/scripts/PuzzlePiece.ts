@@ -56,8 +56,28 @@ export class PuzzlePice extends PIXI.utils.EventEmitter {
     this.emit('dragend')
   }
 
+  get left() {
+    return this.sprite.x - this.sprite.width / 2
+  }
+
+  get right() {
+    return this.sprite.x + this.sprite.width / 2
+  }
+
+  get top() {
+    return this.sprite.y - this.sprite.height / 2
+  }
+
+  get bottom() {
+    return this.sprite.y + this.sprite.height / 2
+  }
+
+  setField(field: { x: number; y: number }) {
+    this.field = field
+    this.reset()
+  }
+
   reset() {
-    console.info('通過')
     this.sprite.x = this.field.x
     this.sprite.y = this.field.y
   }
