@@ -1,13 +1,15 @@
 import * as PIXI from 'pixi.js'
 import { Globals } from './Global'
 
-export class PuzzlePice {
+export class PuzzlePice extends PIXI.utils.EventEmitter {
   sprite!: PIXI.Sprite
   dragging!: boolean
   field!: { x: number; y: number }
   touchPosition!: { x: number; y: number }
 
   constructor(id: number, field: { x: number; y: number }) {
+    super()
+
     this.sprite = new PIXI.Sprite(Globals.resources[`puzzle${id}`].texture)
     this.field = field
     this.reset()
@@ -50,11 +52,12 @@ export class PuzzlePice {
 
   onTouchEnd() {
     this.dragging = false
-    this.reset()
     this.sprite.zIndex = 0
+    this.emit('dragend')
   }
 
   reset() {
+    console.info('通過')
     this.sprite.x = this.field.x
     this.sprite.y = this.field.y
   }

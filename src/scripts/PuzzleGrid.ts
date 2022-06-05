@@ -22,8 +22,13 @@ export class PuzzleGrid {
       const id = ids[random]
       ids = ids.filter((item) => item !== id)
       const piece = new PuzzlePice(id, field)
+      piece.on('dragend', () => this.onPieceDragEnd(piece))
       this.container.addChild(piece.sprite)
       this.pieces.push(piece)
     })
+  }
+
+  onPieceDragEnd(piece: PuzzlePice) {
+    piece.reset()
   }
 }
