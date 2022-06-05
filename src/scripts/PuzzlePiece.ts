@@ -30,6 +30,7 @@ export class PuzzlePice {
   onTouchStart(e: PIXI.InteractionEvent) {
     this.touchPosition = { x: e.data.global.x, y: e.data.global.y }
     this.dragging = true
+    this.sprite.zIndex = 1
   }
 
   onTouchMove(e: PIXI.InteractionEvent) {
@@ -50,6 +51,7 @@ export class PuzzlePice {
   onTouchEnd() {
     this.dragging = false
     this.reset()
+    this.sprite.zIndex = 0
   }
 
   reset() {
