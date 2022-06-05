@@ -14,8 +14,13 @@ export class PuzzleGrid {
   }
 
   createPuzzlePieces() {
+    let ids = PuzzleGridConfig.map((field) => field.id)
+
     PuzzleGridConfig.forEach((field) => {
-      const piece = new PuzzlePice(field.id, field)
+      const random = Math.floor(Math.random() * ids.length)
+      const id = ids[random]
+      ids = ids.filter((item) => item !== id)
+      const piece = new PuzzlePice(id, field)
       this.container.addChild(piece.sprite)
       this.pieces.push(piece)
     })
