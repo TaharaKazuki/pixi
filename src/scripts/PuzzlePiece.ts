@@ -22,6 +22,8 @@ export class PuzzlePice {
   setInteractive() {
     this.sprite.interactive = true
     this.sprite.on('mousedown', this.onTouchStart, this)
+    this.sprite.on('pointermove', this.onTouchMove, this)
+    this.sprite.on('pointerup', this.onTouchEnd, this)
   }
 
   onTouchStart(e: PIXI.InteractionEvent) {
@@ -42,5 +44,9 @@ export class PuzzlePice {
 
     this.sprite.x = this.field.x + offset.x
     this.sprite.y = this.field.y + offset.y
+  }
+
+  onTouchEnd() {
+    this.dragging = false
   }
 }
