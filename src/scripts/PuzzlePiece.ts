@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import { Globals } from './Global'
+import { sound } from '@pixi/sound'
 
 export class PuzzlePice extends PIXI.utils.EventEmitter {
   sprite!: PIXI.Sprite
@@ -32,7 +33,9 @@ export class PuzzlePice extends PIXI.utils.EventEmitter {
   onTouchStart(e: PIXI.InteractionEvent) {
     this.touchPosition = { x: e.data.global.x, y: e.data.global.y }
     this.dragging = true
-    this.sprite.zIndex = 1
+    this.sprite.zIndex = 2
+    sound.add('click', Globals.resources.click.url)
+    sound.play('click')
   }
 
   onTouchMove(e: PIXI.InteractionEvent) {

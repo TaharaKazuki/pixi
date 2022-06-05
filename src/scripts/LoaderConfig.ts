@@ -8,6 +8,8 @@ import puzzle6 from '../sprites/6.png'
 import puzzle7 from '../sprites/7.png'
 import puzzle8 from '../sprites/8.png'
 import puzzle9 from '../sprites/9.png'
+import click from '../sounds/click.mp3'
+import music from '../sounds/music.mp3'
 
 interface ILoaderConfig {
   [key: string]: string
@@ -23,4 +25,6 @@ export const LoaderConfig: ILoaderConfig = {
   puzzle7,
   puzzle8,
   puzzle9,
+  click,
+  music,
 }
