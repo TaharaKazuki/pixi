@@ -9,7 +9,7 @@ export class MainScene {
   constructor() {
     this.container = new PIXI.Container()
     sound.add('music', Globals.resources.music.url)
-    // sound.play('music', { loop: true, volume: 0.2 })
+    sound.play('music', { loop: true, volume: 0.2 })
     this.createBackground()
     this.createPuzzleGrid()
   }
